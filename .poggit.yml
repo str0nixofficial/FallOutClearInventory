@@ -3,5 +3,5 @@ branches:
 - master
 projects:
   FallOutClearInventory:
-    path: "str0nix\foic\Main"
+    path: ""
 ...
