@@ -5,3 +5,7 @@ api: [3.10.0]
 author: str0nix
 description: This plugin clears your inventory if you fall out from the world
 website: https://github.com/str0nixofficial
+
+commands:
+ foic:
+  description: "FOIC Informations"
