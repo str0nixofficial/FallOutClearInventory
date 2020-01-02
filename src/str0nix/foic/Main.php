@@ -32,7 +32,7 @@ class Main extends PluginBase implements Listener {
     public function onCommand(CommandSender $sender, Command $command, string $label, array $args) : bool{
 
 		  switch($command->getName()){
-		      case "fdci";
+		      case "foic";
 		          if($sender instanceof Player){
 		              $sender->sendMessage("§7Plugin written by: §6str0nix\n§7GitHub: §6github.com/str0nixofficial");
 		          } else {
