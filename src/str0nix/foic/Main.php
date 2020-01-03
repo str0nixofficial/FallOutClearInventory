@@ -1,6 +1,6 @@
 <?php
 
-/* This plugin writte by str0nix */
+/* This plugin written by str0nix */
 /* GitHub: https://github.com/str0nixofficial */
 /* Twitter: https://twitter.com/str0nix */
 /* This is a free software, so you are able to modify it. */
