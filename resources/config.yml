@@ -1,0 +1,11 @@
+# Configuration file of the FallOutInventoryClear plugin
+# The plugin and the configuration file are created by str0nix
+# Support: https://github.com/str0nixofficial
+# Thanks for using my plugin! If you like it, please don't forget to rate on Poggit!
+
+# Here you can edit the message which is displayed to the player after falling down. You can use '§' for addig colors to the message.
+message: "§6You fell out from the world."
+
+# Would you clear the player's inventory after falling out from the world? If yes, leave it 'true'. If not, then change it to 'false'.
+inventory_clear: true
+

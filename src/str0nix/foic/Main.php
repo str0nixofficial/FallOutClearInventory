@@ -21,35 +21,47 @@ use pocketmine\command\CommandSender;
 use pocketmine\command\CommandExecutor;
 use pocketmine\command\ConsoleCommandSender;
 use pocketmine\command\ConsoleCommandExecutor;
+use pocketmine\utils\Config;
 
 class Main extends PluginBase implements Listener {
 
-    public function onEnable(){
+    public function onLoad() : void {
+        $this->getLogger()->info("I'm loading...");
+    }
+
+    public function onEnable() : void {
 	     $this->getServer()->getPluginManager()->registerEvents($this, $this);
+         $this->getLogger()->info("I'm successfully loaded.");
+         $this->saveDefaultConfig();
     }
 
     public function onCommand(CommandSender $sender, Command $command, string $label, array $args) : bool{
 
-		  switch($command->getName()){
-		      case "foic";
-		          if($sender instanceof Player){
-		              $sender->sendMessage("§7Plugin written by: §6str0nix\n§7GitHub: §6github.com/str0nixofficial");
-		          } else {
-		
-		          }
-		      break;
-		  }
+        switch($command->getName()){
 
-        return true;
+            case "foic":
+                if(!$sender instanceof Player){
+                    $sender->sendMessage("§7Plugin written by: §6str0nix\n§7GitHub: §6https://github.com/str0nixofficial");
+                } else {
+                    $sender->sendMessage("§7Plugin written by: §6str0nix\n§7GitHub: §6https://github.com/str0nixofficial");
+                }
+
+                return true;
+            
+            break;
+        }
     }
 
     public function onVoidLoop(PlayerMoveEvent $event){
+
         if($event->getTo()->getFloorY() < 2){
             $player = $event->getPlayer();
             $player->teleport($this->getServer()->getDefaultLevel()->getSafeSpawn());
-            $player->sendMessage("§6You fell out from the world.");
-            $player->getInventory()->clearAll();
-            $player->getArmorInventory()->clearAll();
+            $player->sendMessage($this->getConfig()->get("message"));
+            if($this->getConfig()->get("inventory_clear") === true){
+                $player->getInventory()->clearAll();
+                $player->getArmorInventory()->clearAll();
+            }
         }
     }
 }
