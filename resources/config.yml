@@ -9,3 +9,6 @@ message: "§6You fell out from the world."
 # Would you clear the player's inventory after falling out from the world? If yes, leave it 'true'. If not, then change it to 'false'.
 inventory_clear: true
 
+# If you want to see the plugin's enabled/loading messages 
+# in the console on the server's start then set the key below to 'true'. If not, keep this on 'false'.
+console_messages: false

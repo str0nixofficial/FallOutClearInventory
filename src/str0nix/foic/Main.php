@@ -26,13 +26,17 @@ use pocketmine\utils\Config;
 class Main extends PluginBase implements Listener {
 
     public function onLoad() : void {
-        $this->getLogger()->info("I'm loading...");
+        if($this->getConfig()->get("console_messages") === true){
+            $this->getLogger()->info("Plugin loading");
+        }
     }
 
     public function onEnable() : void {
 	     $this->getServer()->getPluginManager()->registerEvents($this, $this);
-         $this->getLogger()->info("I'm successfully loaded.");
          $this->saveDefaultConfig();
+         if($this->getConfig()->get("console_messages") === true){
+            $this->getLogger()->info("Plugin enabled");
+         }
     }
 
     public function onCommand(CommandSender $sender, Command $command, string $label, array $args) : bool{
@@ -41,9 +45,9 @@ class Main extends PluginBase implements Listener {
 
             case "foic":
                 if(!$sender instanceof Player){
-                    $sender->sendMessage("§7Plugin written by: §6str0nix\n§7GitHub: §6https://github.com/str0nixofficial");
+                    $sender->sendMessage("§7Plugin written by: §6str0nix\n§7GitHub: §6https://github.com/str0nixofficial\n§7Plugin version:§6 1.1.1");
                 } else {
-                    $sender->sendMessage("§7Plugin written by: §6str0nix\n§7GitHub: §6https://github.com/str0nixofficial");
+                    $sender->sendMessage("§7Plugin written by: §6str0nix\n§7GitHub: §6https://github.com/str0nixofficial\n§7Plugin version:§6 1.1.1");
                 }
 
                 return true;
