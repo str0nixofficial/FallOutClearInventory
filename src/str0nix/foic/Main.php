@@ -13,6 +13,7 @@ use pocketmine\level\Level;
 use pocketmine\math\Vector3;
 use pocketmine\Player;
 use pocketmine\Server;
+use pocketmine\event\entity\EntityDamageEvent;
 use pocketmine\entity\Entity;
 use pocketmine\event\player\PlayerMoveEvent;
 use pocketmine\event\player\PlayerRespawnEvent;
@@ -55,7 +56,7 @@ class Main extends PluginBase implements Listener {
             break;
         }
     }
-
+/*yucky laggy code
     public function onVoidLoop(PlayerMoveEvent $event){
 
         if($event->getTo()->getFloorY() < 2){
@@ -68,4 +69,20 @@ class Main extends PluginBase implements Listener {
             }
         }
     }
+    */
+    	public function onDamage(EntityDamageEvent $event) {
+		$player = $event->getEntity();//Register Player as Entity Getting Damaged
+		if(!$player instanceof Player) {//Check If The Player Is A Human
+			return;
+		}
+		if($event->getCause() === EntityDamageEvent::CAUSE_VOID) {//If The Damage Cause Is Void
+			$event->setCancelled();//Cancel Event
+			$player->teleport($this->getServer()->getDefaultLevel()->getSafeSpawn());//Tp Player To Safest Spawn
+                        $player->sendMessage($this->getConfig()->get("message"));//Msg
+                        if ($this->getConfig()->get("inventory_clear") === true) {//Check For Inventory Clear In Config
+                		$player->getInventory()->clearAll();//Clear Inv
+                		$player->getArmorInventory()->clearAll();//Clear Armor
+            		}
+		}
+	}
 }
